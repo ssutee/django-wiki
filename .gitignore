@@ -31,3 +31,9 @@ virtualenv
 # text editors
 *~
 *.swp
+
+# local settings
+local_settings.py
+
+# database files
+*.db

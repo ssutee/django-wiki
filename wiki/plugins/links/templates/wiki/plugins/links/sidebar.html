@@ -113,10 +113,24 @@ function wikiInsertETipitakaLink() {
   var result = $.validity.end();  
   
   if (result.valid) {
-    var volume = $('#volume').val();  
-    var page = $('#page').val();
-    var item = $('#item').val();    
-    alert('ok');
+    var volume = $('#volume').val().trim();  
+    var page = $('#page').val().trim();
+    var item = $('#item').val().trim();    
+    var quote = $('#quote').val().trim();
+    
+    if (quote) {
+      $('#id_content').insertAtCaret('    ' + quote + '\n');
+    }
+    
+    var link = 'พระไตรปิฎกภาษาไทย ฉบับหลวง เล่มที่ ' + 
+      volume + ' หน้าที่ ' + page + ' ข้อที่ ' + item;    
+    link = link.replace(/0/g,'๐').replace(/1/g,'๑').replace(/2/g, '๒')
+      .replace(/3/g, '๓').replace(/4/g, '๔').replace(/5/g, '๕')
+      .replace(/6/g, '๖').replace(/7/g, '๗').replace(/8/g, '๘').replace(/9/g, '๙');
+
+    $('#id_content').insertAtCaret('\n* * *\n');
+    $('#id_content').insertAtCaret('> ['+ link + 
+      '](http://etipitaka.com/read?language=thai&number='+ page + '&volume=' + volume + ')\n');      
   }
 }
 
@@ -128,7 +142,16 @@ function wikiInsertMediaLink() {
   var result = $.validity.end();
   
   if (result.valid) {
-    alert('ok');
+    var title = $('#title').val().trim();
+    var url = $('#url').val().trim();
+    var starting_time = $('#starting_time').val().trim();   
+         
+    if (starting_time) {
+      starting_time = ' นาทีที่ ' + starting_time;
+    }
+    
+    $('#id_content').insertAtCaret('\n* * *\n');
+    $('#id_content').insertAtCaret('> ['+ title + starting_time +'](' + url  + ')\n');
   }
 }
 

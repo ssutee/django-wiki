@@ -1,5 +1,72 @@
-{% load i18n %}
+{% load i18n sekizai_tags %}
 {% load url from future %}
+
+{% addtoblock "css" %}
+  <link href="{{ STATIC_URL }}wiki/css/jquery.validity.css" rel="stylesheet">
+{% endaddtoblock %}
+
+{% addtoblock "js" %}
+  <script src="{{ STATIC_URL }}wiki/js/jQuery.validity.min.js"></script>
+{% endaddtoblock %}
+
+<h4>{% trans "Link to E-Tipitaka website" %}</h4>
+
+<p>
+  <p>
+  <label for="volume">{% trans "Volume" %}</label>
+  <em>*</em>  
+  <input id="volume" name="volume" type="text" value="" placeholder="{% trans 'Enter volume number' %}" class="required"></input>
+  </p>
+  <p>
+  <label for="page">{% trans "Page" %}</label>    
+  <em>*</em>
+  <input id="page" type="text" value="" placeholder="{% trans 'Enter page number' %}"></input>
+  </p>
+  <p>
+  <label for="item">{% trans "Item" %}</label>    
+  <em>*</em>  
+  <input id="item" type="text" value="" placeholder="{% trans 'Enter item number' %}"></input>    
+  </p>
+  <p>
+  <label for="quote">{% trans "Quote (optional)" %}</label>
+  <textarea id="quote" rows="4" cols="50"></textarea>
+  </p>
+  <p>
+  <button type="button" class="btn" onclick="wikiInsertETipitakaLink()">
+    {% trans "Insert" %}
+  </button>
+  </p>
+</p>
+
+<hr />
+
+<h4>{% trans "Link to media" %}</h4>
+
+<p>
+  <p>
+  <label for="title">{% trans "Title" %}</label>
+  <em>*</em>
+  <input id="title" type="text" value="" placeholder="{% trans 'Enter media title' %}"></input>
+  </p>
+  <p>
+  <label for="url">{% trans "URL" %}</label>
+  <em>*</em>
+  <input id="url" type="text" value="" placeholder="{% trans 'Enter media url' %}"></input>
+  </p>
+  <p>
+  <label for="starting_time">{% trans "Starting time (optional)" %}</label>
+  <input id="starting_time" type="text" value="" placeholder="{% trans 'Enter starting time (minute)' %}"></input>
+  </p>
+  
+  <p>
+  <button type="button" class="btn" onclick="wikiInsertMediaLink()">
+    {% trans "Insert" %}
+  </button>
+  </p>
+</p>
+
+<hr/>
+
 <h4>{% trans "Link to another wiki page" %}</h4>
 
 <p>
@@ -24,6 +91,7 @@
 </p>
 <pre>[Clickable text](http://example.com)</pre>
 
+
 <script type="text/javascript">
 $('.page_title_query').typeahead({
     source: function (query, process) {
@@ -35,6 +103,33 @@ $('.page_title_query').typeahead({
 
 function wikiInsertLink() {
   $('#id_content').insertAtCaret($('#links_page_title_query').val());
+}
+
+function wikiInsertETipitakaLink() {
+  $.validity.start();  
+  $("#volume").require().match('integer').range(1,45);
+  $("#page").require().match('integer').greaterThan(0);
+  $("#item").require().match('integer').greaterThan(0);      
+  var result = $.validity.end();  
+  
+  if (result.valid) {
+    var volume = $('#volume').val();  
+    var page = $('#page').val();
+    var item = $('#item').val();    
+    alert('ok');
+  }
+}
+
+function wikiInsertMediaLink() {
+  $.validity.start();
+  $("#title").require();
+  $("#url").require().match('url');
+  $("#starting_time").match('integer');
+  var result = $.validity.end();
+  
+  if (result.valid) {
+    alert('ok');
+  }
 }
 
 </script>

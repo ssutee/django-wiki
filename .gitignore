@@ -37,3 +37,10 @@ local_settings.py
 
 # database files
 *.db
+
+.DS_Store
+
+buddhawaj/cache
+buddhawaj/cache/*
+wiki/images
+wiki/images/*

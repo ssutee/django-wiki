@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -22,3 +23,14 @@ urlpatterns += patterns('',
     (r'^notify/', get_notify_pattern()),
     (r'', get_wiki_pattern())
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^cache/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.CACHE_ROOT,
+        }),
+        
+        url(r'^wiki/images/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.IMAGES_ROOT,
+        }),        
+   )

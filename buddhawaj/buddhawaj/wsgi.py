@@ -13,16 +13,28 @@ middleware here, or combine a Django application with an application of another
 framework.
 
 """
-import os
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "buddhawaj.settings")
+# import os
+# 
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "buddhawaj.settings")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
-from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
+# from django.core.wsgi import get_wsgi_application
+# application = get_wsgi_application()
 
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
 # application = HelloWorldApplication(application)
+
+import os
+import sys
+import site
+
+site.addsitedir('/home/sutee/django1.4-env/lib/python2.6/site-packages')
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "buddhawaj.settings")
+# os.environ['DJANGO_SETTINGS_MODULE'] = 'buddhawaj.settings'
+
+import django.core.handlers.wsgi
+application = django.core.handlers.wsgi.WSGIHandler()

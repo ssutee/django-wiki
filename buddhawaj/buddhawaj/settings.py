@@ -1,7 +1,11 @@
 # Django settings for buddhawaj project.
+import os, sys
+
+sys.path.append(os.path.abspath(sys.path[0]+'/..'))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+PRODUCTION = True
 
 ADMINS = (
     # ('Sutee Sudprasert', 'sutee.s@gmail.com'),

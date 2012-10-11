@@ -45,3 +45,4 @@ buddhawaj/cache
 buddhawaj/cache/*
 wiki/images
 wiki/images/*
+fabfile.py

@@ -33,7 +33,7 @@ import site
 
 site.addsitedir('/home/sutee/django1.4-env/lib/python2.6/site-packages')
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "buddhawaj.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 # os.environ['DJANGO_SETTINGS_MODULE'] = 'buddhawaj.settings'
 
 import django.core.handlers.wsgi

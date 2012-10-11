@@ -7,7 +7,7 @@
   <div class="thumbnail">
     {% thumbnail revision.image "250x250" as thumb %}
       <a href="{{ revision.image.url }}">
-        <img src="/{{ thumb.url }}" alt="{{ revision.get_filename }}" />
+        <img src="{{ thumb.url }}" alt="{{ revision.get_filename }}" />
       </a>
       {% empty %}
       <div class="caption">

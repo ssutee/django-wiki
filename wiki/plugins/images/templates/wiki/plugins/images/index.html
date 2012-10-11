@@ -25,7 +25,7 @@
       <td rowspan="3">
         <p class="thumbnail">
         {% thumbnail revision.image "250x250" as thumb %}
-            <img src="/{{ thumb.url }}" alt="{{ revision.get_filename }}" />
+            <img src="{{ thumb.url }}" alt="{{ revision.get_filename }}" />
         {% endthumbnail %}
         </p>
         {% if image|can_write:user %}
@@ -72,7 +72,7 @@
             <tr>
               <td>
               {% thumbnail revision.imagerevision.image "50x50" crop="center" as thumb %}
-                <img src="/{{ thumb.url }}" alt="{{ revision.imagerevision.get_filename }}" />
+                <img src="{{ thumb.url }}" alt="{{ revision.imagerevision.get_filename }}" />
               {% endthumbnail %}
               </td>
               <td>{% include "wiki/includes/revision_info.html" with current_revision=image.current_revision revision=old_revision %}</td>

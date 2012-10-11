@@ -24,7 +24,7 @@ urlpatterns += patterns('',
     (r'', get_wiki_pattern())
 )
 
-if settings.DEBUG:
+if not settings.PRODUCTION:
     urlpatterns += patterns('',
         url(r'^cache/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.CACHE_ROOT,

@@ -128,9 +128,9 @@ function wikiInsertETipitakaLink() {
       .replace(/3/g, '๓').replace(/4/g, '๔').replace(/5/g, '๕')
       .replace(/6/g, '๖').replace(/7/g, '๗').replace(/8/g, '๘').replace(/9/g, '๙');
 
-    $('#id_content').insertAtCaret('\n* * *\n');
     $('#id_content').insertAtCaret('> ['+ link + 
       '](http://etipitaka.com/read?language=thai&number='+ page + '&volume=' + volume + ')\n');      
+    $('#id_content').insertAtCaret('\n* * *\n');      
   }
 }
 
@@ -149,8 +149,9 @@ function wikiInsertMediaLink() {
       starting_time = ' นาทีที่ ' + starting_time;
     }
     
+    $('#id_content').insertAtCaret('> ['+ title + starting_time +'](' + url  + ')\n');    
     $('#id_content').insertAtCaret('\n* * *\n');
-    $('#id_content').insertAtCaret('> ['+ title + starting_time +'](' + url  + ')\n');
+
   }
 }
 

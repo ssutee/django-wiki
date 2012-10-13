@@ -138,7 +138,6 @@ function wikiInsertMediaLink() {
   $.validity.start();
   $("#title").require();
   $("#url").require().match('url');
-  $("#starting_time").match('integer');
   var result = $.validity.end();
   
   if (result.valid) {

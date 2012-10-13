@@ -119,7 +119,7 @@ function wikiInsertETipitakaLink() {
     var quote = $('#quote').val().trim();
     
     if (quote) {
-      $('#id_content').insertAtCaret('    ' + quote + '\n');
+      $('#id_content').insertAtCaret(quote.trim() + '\n');
     }
     
     var link = 'พระไตรปิฎกภาษาไทย ฉบับหลวง เล่มที่ ' + 
